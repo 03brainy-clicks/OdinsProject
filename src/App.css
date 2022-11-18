@@ -1,0 +1,50 @@
+/* custom css  */
+/* --------------------- Navigation ------------------- */
+
+/* --------------------- / Navigation ------------------- */
+/* --------------------- home ------------------- */
+.hero-heading {
+  line-height: 1.2em;
+}
+/* marquee  */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
+.slider {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  background-color: transparent;
+}
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slide-track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 19);
+}
+.slider .slide {
+  margin: 0px 50px;
+}
+
+/* --------------------- / home ------------------- */

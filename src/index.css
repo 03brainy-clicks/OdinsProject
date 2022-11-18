@@ -1,0 +1,45 @@
+/* tailwinds configs   */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* font   */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* Global  */
+
+body {
+  font-family: "Inter", sans-serif;
+}
+:root {
+  /* color  */
+  --primary: #a9792b;
+  --secondary: #374151;
+
+  /* hovers  */
+  --primary-hover: #976c28;
+}
+
+/* colors classes  */
+.color-primary {
+  color: var(--primary);
+}
+.color-secondary {
+  color: var(--secondary);
+}
+
+/* background classes  */
+.background-primary {
+  background-color: var(--primary);
+}
+.background-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.background-secondary {
+  background-color: var(--secondary);
+}
+
+a {
+  text-decoration: none;
+}
