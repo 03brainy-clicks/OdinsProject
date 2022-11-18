@@ -12,7 +12,7 @@ const Home = () => {
   const el = useRef(null);
 
   useEffect(() => {
-    var typed = new Typed(el.current, {
+    new Typed(el.current, {
       strings: [
         "Be a PRO",
         "Showcase",
