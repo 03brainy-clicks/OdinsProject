@@ -13,6 +13,7 @@ import Credit from "./pages/Credit";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
+import PageNotFound from "./pages/PageNotFound";
 
 // routing
 import { Route, Routes } from "react-router-dom";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/signup" exact element={<Signup />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/" exact element={<Home />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </GlobalContext.Provider>
