@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 // routing
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 // context
 import GlobalContext from "../context/GlobalContext";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   // states
@@ -16,6 +17,11 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
+  // validation
+  const passMatchCheck = useRef("");
+  const userCheck = useRef("");
+  const passCheck = useRef("");
+
   // context
   const data = useContext(GlobalContext);
 
@@ -23,25 +29,53 @@ const Signup = () => {
   const navigate = useNavigate();
 
   //  user register
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        console.log(res.user.email);
-        // setting value
-        data.setGlobal({
-          ...data.global,
-          email: res.user.email,
-        });
-        // setting form value to initial
-        setUsername("");
-        setEmail("");
+    passMatchCheck.current.innerText = "";
+    userCheck.current.innerText = "";
+    passCheck.current.innerText = "";
+
+    if (email && username && password && cpassword) {
+      e.preventDefault();
+      if (username.length < 4) {
+        userCheck.current.innerText = "is too short (minimum is 4 characters)";
+        return null;
+      }
+      if (password.length < 8) {
+        passCheck.current.innerText = "is too short (minimum is 8 characters)";
+        return null;
+      }
+      if (password === cpassword) {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((res) => {
+            // setting value
+            data.setGlobal({
+              ...data.global,
+              email: res.user.email,
+            });
+            // setting form value to initial
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            setCpassword("");
+
+            // register successful
+            toast.success(`Hello ${username}`);
+
+            // redirect
+            navigate("/dashboard");
+          })
+          .catch((error) => {
+            // sign up failed
+            toast.error(`${error}`);
+            setEmail("");
+          });
+      } else {
         setPassword("");
         setCpassword("");
-
-        navigate("/dashboard");
-      })
-      .catch((error) => console.log(error));
+        passMatchCheck.current.innerText = "Password not matched";
+      }
+    }
   };
 
   return (
@@ -72,6 +106,9 @@ const Signup = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+            <div>
+              <span ref={userCheck} className="text-sm text-red-700"></span>
+            </div>
           </div>
           {/* email */}
           <div className="mb-5">
@@ -104,6 +141,9 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div>
+              <span ref={passCheck} className="text-sm text-red-700"></span>
+            </div>
           </div>
           {/* password  */}
           <div className="mb-5">
@@ -120,6 +160,12 @@ const Signup = () => {
               value={cpassword}
               onChange={(e) => setCpassword(e.target.value)}
             />
+            <div>
+              <span
+                ref={passMatchCheck}
+                className="text-sm text-red-700"
+              ></span>
+            </div>
           </div>
           <div className="mt-10">
             <button

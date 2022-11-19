@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // auth
 import { auth } from "../Firebase/Firabase.config";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   // states
@@ -16,14 +17,19 @@ const ForgotPassword = () => {
 
   // reset password for got password
   const resetPassword = (e) => {
-    e.preventDefault();
-    sendPasswordResetEmail(auth, email)
-      .then((res) => {
-        console.log(res);
-        setEmail("");
-        navigate("/login");
-      })
-      .catch((error) => console.log(error));
+    if (email) {
+      e.preventDefault();
+      sendPasswordResetEmail(auth, email)
+        .then((res) => {
+          setEmail("");
+          toast.success("Reset Email Sent");
+          navigate("/login");
+        })
+        .catch((error) => {
+          toast.error(`${error}`);
+          setEmail("");
+        });
+    }
   };
 
   return (

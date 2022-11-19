@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
+// images
 import Odin from "../images/odin.svg";
 import Learn from "../images/learn.svg";
 import Laptop from "../images/laptop.svg";
@@ -7,6 +8,9 @@ import Connect from "../images/connect.svg";
 
 // Can also be included with a regular script tag
 import Typed from "typed.js";
+
+// routing
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const el = useRef(null);
@@ -41,9 +45,11 @@ const Home = () => {
           passionate open source community.
         </p>
         <div className="mt-12 text-center">
-          <button className="rounded background-primary text-white py-3 px-6 font-medium ">
-            Let's Showcase Your Skill
-          </button>
+          <Link to="/signup">
+            <button className="rounded background-primary text-white py-3 px-6 font-medium ">
+              Let's Showcase Your Skill
+            </button>
+          </Link>
         </div>
       </div>
       {/* ---------------------------------------------/ Top section -------------------------------------- */}

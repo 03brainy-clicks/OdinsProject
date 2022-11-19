@@ -20,6 +20,9 @@ import { Route, Routes } from "react-router-dom";
 // context
 import GlobalContext from "./context/GlobalContext";
 
+// toast
+import { ToastContainer } from "react-toastify";
+
 function App() {
   // state
   const [global, setGlobal] = useState({
@@ -30,6 +33,7 @@ function App() {
   return (
     <>
       <GlobalContext.Provider value={{ global, setGlobal }}>
+        <ToastContainer limit={3} />
         <Navigation />
         <Routes>
           <Route path="/profile" exact element={<Profile />} />

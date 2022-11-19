@@ -1,41 +1,57 @@
 import React, { useContext, useState } from "react";
 
+// ? routing
 import { Link } from "react-router-dom";
 
-// authentication
+// ? authentication
 import { auth } from "../Firebase/Firabase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-// context
+// ? context
 import GlobalContext from "../context/GlobalContext";
 
+//? toast
+import { toast } from "react-toastify";
+
 const Login = () => {
-  // states
+  // * states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // context
+  // * context
   const data = useContext(GlobalContext);
 
+  // Todo ------------------------ function ----------------------------
   //  user login
   const handleSubmit = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        console.log(res);
+    if (email && password) {
+      e.preventDefault();
+      toast.info("Processing");
+      signInWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+          // setting details
+          data.setGlobal({
+            ...data.global,
+            email: res.user.email,
+          });
 
-        // setting session
-        data.setGlobal({
-          ...data.global,
-          email: res.user.email,
+          // setting state to initial
+          setEmail("");
+          setPassword("");
+        })
+        .then(() => {
+          toast.success("Login Successful");
+        })
+        .catch((error) => {
+          toast.error(`${error}`);
+          // setting state to initial
+          setEmail("");
+          setPassword("");
+          console.log(error);
         });
-
-        // setting state to initial
-        setEmail("");
-        setPassword("");
-      })
-      .catch((error) => console.log(error));
+    }
   };
+  // Todo ------------------------ /function ----------------------------
 
   return (
     <div className="bg-gray-100 pt-20 pb-12">
@@ -98,7 +114,7 @@ const Login = () => {
               className=" rounded background-primary text-white py-2 px-3 w-full"
               onClick={handleSubmit}
             >
-              Sign Up
+              Sign In
             </button>
           </div>
         </form>

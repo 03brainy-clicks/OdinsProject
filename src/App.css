@@ -48,3 +48,38 @@
 }
 
 /* --------------------- / home ------------------- */
+
+ul {
+  list-style-type: none;
+}
+
+/* fade animation  */
+.menu {
+  animation: fadeOut 1s;
+}
+
+.menu[open] {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+    transform: translateY(2.25em);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-2.25em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
