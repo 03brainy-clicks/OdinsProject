@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 // ? routing
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ? authentication
 import { auth } from "../Firebase/Firabase.config";
@@ -20,6 +20,9 @@ const Login = () => {
 
   // * context
   const data = useContext(GlobalContext);
+
+  //*  routing
+  const navigate = useNavigate();
 
   // Todo ------------------------ function ----------------------------
   //  user login
@@ -41,6 +44,7 @@ const Login = () => {
         })
         .then(() => {
           toast.success("Login Successful");
+          navigate("/dashboard");
         })
         .catch((error) => {
           toast.error(`${error}`);
