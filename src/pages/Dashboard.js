@@ -49,19 +49,28 @@ const Dashboard = () => {
 
   // * get projects
   useEffect(() => {
+    console.log("dashport project effect hook running");
     const detail = async () => {
       const userRef = doc(db, "userProjects", data.global.uid);
       const userSnap = await getDoc(userRef);
-      if (userSnap) {
-        // setting user Details
-        setProjects(userSnap.data());
-      } else {
-        console.log("unable to get data");
+      if (userSnap !== "undefined") {
+        if (userSnap) {
+          // setting user Details
+          setProjects(userSnap.data());
+          const allprojects = userSnap.data();
+          if (allprojects.projects) {
+            data.setGlobal({
+              ...data.global,
+              projects: [...allprojects.projects],
+            });
+          }
+        } else {
+          console.log("unable to get data");
+        }
       }
     };
     detail();
-  }, [data]);
-
+  }, [data.global.uid]);
   return (
     <div className="bg-gray-100 py-11">
       <div className="mx-auto md:w-6/12 w-10/12 mb-11">
@@ -106,9 +115,9 @@ const Dashboard = () => {
           </Link>
         </h2>
         <div className="md:flex lg:justify-start justify-between flex-wrap">
-          {projects.projects
-            ? projects.projects.map((project) => (
-                <ProjectCard key={project.title} data={project} />
+          {projects?.projects
+            ? projects?.projects.map((project) => (
+                <ProjectCard key={project.uid} data={project} />
               ))
             : null}
         </div>

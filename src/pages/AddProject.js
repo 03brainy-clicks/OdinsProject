@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 // ? database
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase/Firabase.config";
 
 // ? context
@@ -22,28 +22,12 @@ const AddProject = () => {
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
   const [deploy, setDeploy] = useState("");
-  const [projects, setProjects] = useState("");
 
   // *  routing;
   const navigate = useNavigate();
 
   // *  context
   const data = useContext(GlobalContext);
-
-  // * get projects
-  useEffect(() => {
-    const detail = async () => {
-      const userRef = doc(db, "userProjects", "FjfAoMjC78M5VSOEwAzd");
-      const userSnap = await getDoc(userRef);
-      if (userSnap) {
-        // setting user Details
-        setProjects(userSnap.data());
-      } else {
-        console.log("unable to get data");
-      }
-    };
-    detail();
-  }, [data]);
 
   //   Todo ------------------------- function --------------------
 
@@ -59,23 +43,17 @@ const AddProject = () => {
         description: description,
         uid: uuidv4(),
       };
+
       await setDoc(doc(db, "userProjects", data.global.uid), {
-        projects: [project, ...projects.projects],
-      })
-        .then((res) => {
-          // reseting value
-          setCode("");
-          setDeploy("");
-          setDescription("");
-          setTitle("");
-
-          // success
-          toast.success("Project added");
-
-          // redirect
-          navigate("/dashboard");
-        })
-        .catch((e) => toast.error(e));
+        projects: [project, ...data.global.projects],
+      }).then((res) => {
+        toast.success("Project Added");
+        setCode("");
+        setDeploy("");
+        setDescription("");
+        setTitle("");
+        navigate("/dashboard");
+      });
     }
   };
   //   Todo ------------------------- / function --------------------
