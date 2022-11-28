@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   // * states
   const [user, setUser] = useState("");
-  const [projects, setProjects] = useState("");
+  const [projects, setProjects] = useState([]);
   const data = useContext(GlobalContext);
 
   // * get User Details
