@@ -340,7 +340,6 @@ function SvgPNF() {
           </g>
         </g>
       </svg>
-      ;
     </>
   );
 }

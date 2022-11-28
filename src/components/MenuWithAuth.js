@@ -1,10 +1,11 @@
 import React from "react";
-// routing
+
+// ? routing
 import { Link } from "react-router-dom";
 
 const MenuWithAuth = (props) => {
-  // logout
-  const { user, handleLogout } = props;
+  // * logout
+  const { email, handleLogout } = props;
 
   return (
     <ul className="md:flex ml-auto text-gray-500 font-medium text-sm items-center md:bloack hidden">
@@ -29,7 +30,7 @@ const MenuWithAuth = (props) => {
  hover:border-gray-400 py-2
  "
         >
-          {user}
+          {email}
         </li>
       </Link>
       {/* -------- user Profile -------- */}

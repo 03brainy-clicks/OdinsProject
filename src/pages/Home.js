@@ -1,19 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
-// images
+// ? images
 import Odin from "../images/odin.svg";
 import Learn from "../images/learn.svg";
 import Laptop from "../images/laptop.svg";
 import Connect from "../images/connect.svg";
 
-// Can also be included with a regular script tag
+// ? typed effect js
 import Typed from "typed.js";
 
-// routing
-import { Link } from "react-router-dom";
+// ? routing
+import { Link, useNavigate } from "react-router-dom";
+import GlobalContext from "../context/GlobalContext";
 
 const Home = () => {
   const el = useRef(null);
+
+  // *context
+  const data = useContext(GlobalContext);
+
+  // *routing
+  const navigate = useNavigate();
 
   useEffect(() => {
     new Typed(el.current, {
@@ -29,6 +36,12 @@ const Home = () => {
       showCursor: false,
       loop: true,
     });
+  }, []);
+
+  useEffect(() => {
+    if (data.global.email) {
+      navigate("/dashboard");
+    }
   });
 
   return (

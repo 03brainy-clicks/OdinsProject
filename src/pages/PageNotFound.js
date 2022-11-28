@@ -1,6 +1,9 @@
 import React from "react";
+
+// ? image
 import SvgPNF from "../images/svgPNF";
-// routing
+
+// ? routing
 import { Link } from "react-router-dom";
 
 const PageNotFound = () => {

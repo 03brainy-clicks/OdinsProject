@@ -1,14 +1,14 @@
 import React from "react";
 
-// icons
+// ? icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEarth } from "@fortawesome/free-solid-svg-icons";
 
-// routing
+// ? routing
 import { Link } from "react-router-dom";
 
-// image
+// ? image
 import Odin from "../images/odin-2.svg";
 
 const Footer = () => {

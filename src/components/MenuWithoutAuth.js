@@ -1,6 +1,8 @@
 import React from "react";
-// routing
+
+// ? routing
 import { Link } from "react-router-dom";
+
 const MenuWithoutAuth = () => {
   return (
     <ul className="md:flex ml-auto text-gray-500 font-medium text-sm items-center md:bloack hidden">

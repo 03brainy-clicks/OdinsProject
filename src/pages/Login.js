@@ -36,6 +36,7 @@ const Login = () => {
           data.setGlobal({
             ...data.global,
             email: res.user.email,
+            uid: res.user.uid,
           });
 
           // setting state to initial

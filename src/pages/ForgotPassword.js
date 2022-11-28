@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 
-// routing
+// ? routing
 import { useNavigate } from "react-router-dom";
 
-// auth
+// ? auth
 import { auth } from "../Firebase/Firabase.config";
 import { sendPasswordResetEmail } from "firebase/auth";
+
+// ? toast
 import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
-  // states
+  // * states
   const [email, setEmail] = useState("");
 
-  //   navigate routing
+  // * navigate routing
   const navigate = useNavigate();
 
-  // reset password for got password
+  // * reset password for got password
   const resetPassword = (e) => {
     if (email) {
       e.preventDefault();

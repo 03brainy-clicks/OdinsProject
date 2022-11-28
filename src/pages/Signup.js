@@ -1,33 +1,36 @@
 import React, { useContext, useState, useRef } from "react";
-// routing
+//? routing
 import { Link, useNavigate } from "react-router-dom";
 
-// authentication
+// ? authentication
 import { auth } from "../Firebase/Firabase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-// context
+// ? context
 import GlobalContext from "../context/GlobalContext";
+
+// ? toast
 import { toast } from "react-toastify";
 
 const Signup = () => {
-  // states
+  // * states
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
-  // validation
+  // * validation
   const passMatchCheck = useRef("");
   const userCheck = useRef("");
   const passCheck = useRef("");
 
-  // context
+  // * context
   const data = useContext(GlobalContext);
 
-  // routing
+  // * routing
   const navigate = useNavigate();
 
+  // Todo ------------------------------ function -----------------------
   //  user register
 
   const handleSubmit = (e) => {
@@ -52,6 +55,7 @@ const Signup = () => {
             data.setGlobal({
               ...data.global,
               email: res.user.email,
+              uid: res.user.uid,
             });
             // setting form value to initial
             setUsername("");
@@ -63,7 +67,7 @@ const Signup = () => {
             toast.success(`Hello ${username}`);
 
             // redirect
-            navigate("/dashboard");
+            navigate("/details");
           })
           .catch((error) => {
             // sign up failed
@@ -78,6 +82,7 @@ const Signup = () => {
     }
   };
 
+  // Todo ------------------------------ / function -----------------------
   return (
     <div className="bg-gray-100 pt-20 pb-12">
       <h2 className="text-3xl font-bold text-center">Sign up for free</h2>

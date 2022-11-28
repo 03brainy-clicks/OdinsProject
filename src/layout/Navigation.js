@@ -90,7 +90,7 @@ const Navigation = () => {
       {/* ---------------------------- dropDown  -----------------------------*/}
       <div className="menu">
         {dropDown ? (
-          <ul className="flex flex-col justify-center items-center menu pb-7">
+          <ul className="flex flex-col justify-center items-center menu pb-7 md:hidden">
             {data.global.email ? (
               <Link to="/dashboard">
                 <li className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2  my-2  ">

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 
-// component
+//? component
 import Footer from "./layout/Footer";
 import Navigation from "./layout/Navigation";
 
-// pages
+//? pages
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -14,19 +14,22 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import PageNotFound from "./pages/PageNotFound";
+import Details from "./InfoPages/afterSignup/Details";
+import AddProject from "./pages/AddProject";
 
-// routing
+// ? routing
 import { Route, Routes } from "react-router-dom";
 
-// context
+// ? context
 import GlobalContext from "./context/GlobalContext";
 
-// toast
+// ? toast
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  // state
+  // * state
   const [global, setGlobal] = useState({
+    uid: "GfLxlTTsRMM5oLIHmPsSTq1TsRs1",
     email: "",
     projects: [],
   });
@@ -37,7 +40,9 @@ function App() {
         <ToastContainer limit={3} />
         <Navigation />
         <Routes>
+          <Route path="/project/addProject" element={<AddProject />} />
           <Route path="/profile" exact element={<Profile />} />
+          <Route path="/details" exact element={<Details />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/credit" exact element={<Credit />} />
           <Route path="/forgotPassword" exact element={<ForgotPassword />} />

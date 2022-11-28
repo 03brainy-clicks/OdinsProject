@@ -83,3 +83,21 @@ ul {
     transform: translateY(0);
   }
 }
+
+/* ----------------- projectCard ----------- */
+/* .projectCard {
+  min-width: 350px;
+} */
+
+.frame ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.frame ::-webkit-scrollbar-thumb {
+  background-color: var(--color-4);
+  border-radius: 5px;
+}
+.frame ::-webkit-scrollbar-corner {
+  width: 0px;
+}
+/* ----------------- projectCard ----------- */
