@@ -31,7 +31,7 @@ const ProjectCard = (props) => {
         <div className="mt-5">
           <h4 className="text-lg font-bold text-gray-700">{title}</h4>
           <p className="text-gray-600">{description}</p>
-          <p className="mt-4">
+          <p className="mt-3 text-gray-500">
             <a href={codeLink} className="hover:text-gold" target="_black">
               <FontAwesomeIcon icon={faCode} />
             </a>

@@ -50,7 +50,7 @@ const Dashboard = () => {
   // * get projects
   useEffect(() => {
     const detail = async () => {
-      const userRef = doc(db, "userProjects", "FjfAoMjC78M5VSOEwAzd");
+      const userRef = doc(db, "userProjects", data.global.uid);
       const userSnap = await getDoc(userRef);
       if (userSnap) {
         // setting user Details

@@ -59,7 +59,7 @@ const AddProject = () => {
         description: description,
         uid: uuidv4(),
       };
-      await setDoc(doc(db, "userProjects", "FjfAoMjC78M5VSOEwAzd"), {
+      await setDoc(doc(db, "userProjects", data.global.uid), {
         projects: [project, ...projects.projects],
       })
         .then((res) => {

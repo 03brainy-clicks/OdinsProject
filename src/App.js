@@ -29,7 +29,7 @@ import { ToastContainer } from "react-toastify";
 function App() {
   // * state
   const [global, setGlobal] = useState({
-    uid: "GfLxlTTsRMM5oLIHmPsSTq1TsRs1",
+    uid: "",
     email: "",
     projects: [],
   });
