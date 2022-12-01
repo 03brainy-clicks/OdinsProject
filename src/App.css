@@ -85,9 +85,9 @@ ul {
 }
 
 /* ----------------- projectCard ----------- */
-/* .projectCard {
+.projectCard {
   min-width: 350px;
-} */
+}
 
 .frame ::-webkit-scrollbar {
   width: 5px;

@@ -11,8 +11,8 @@ import {
 const ProjectCard = (props) => {
   const { title, codeLink, description, deployLink } = props.data;
   return (
-    <div className="md:w-4/12 w-full lg:p-3 projectCard lg:my-0 my-3 overflow-hidden">
-      <div className="p-5 bg-white overflow-hidden rounded">
+    <div className="md:w-4/12 w-full lg:p-3  lg:my-0 my-3 overflow-hidden projectCard">
+      <div className="p-5 bg-white  rounded">
         <div className="relative">
           <iframe
             title={title}
@@ -27,7 +27,6 @@ const ProjectCard = (props) => {
             </button>
           </span>
         </div>
-
         <div className="mt-5">
           <h4 className="text-lg font-bold text-gray-700">{title}</h4>
           <p className="text-gray-600">{description}</p>
