@@ -70,7 +70,8 @@ const Dashboard = () => {
       }
     };
     detail();
-  }, [data.global.uid]);
+  }, [data]); // data.global.projects
+
   return (
     <div className="bg-gray-100 py-11">
       <div className="mx-auto md:w-6/12 w-10/12 mb-11">
