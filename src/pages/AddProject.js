@@ -60,16 +60,29 @@ const AddProject = () => {
         uid: uuidv4(),
       };
 
-      await setDoc(doc(db, "userProjects", data.global.uid), {
-        projects: [project, ...projects],
-      }).then((res) => {
-        toast.success("Project Added");
-        setCode("");
-        setDeploy("");
-        setDescription("");
-        setTitle("");
-        navigate("/dashboard");
-      });
+      if (projects) {
+        await setDoc(doc(db, "userProjects", data.global.uid), {
+          projects: [project, ...projects],
+        }).then((res) => {
+          toast.success("Project Added");
+          setCode("");
+          setDeploy("");
+          setDescription("");
+          setTitle("");
+          navigate("/dashboard");
+        });
+      } else {
+        await setDoc(doc(db, "userProjects", data.global.uid), {
+          projects: [project],
+        }).then((res) => {
+          toast.success("Project Added");
+          setCode("");
+          setDeploy("");
+          setDescription("");
+          setTitle("");
+          navigate("/dashboard");
+        });
+      }
     }
   };
   //   Todo ------------------------- / function --------------------
