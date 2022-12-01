@@ -32,10 +32,12 @@ const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const data = useContext(GlobalContext);
 
+  const uid = data.global.uid;
+
   // * get User Details
   useEffect(() => {
     const detail = async () => {
-      const userRef = doc(db, "userDetails", data.global.uid);
+      const userRef = doc(db, "userDetails", uid);
       const userSnap = await getDoc(userRef);
       if (userSnap) {
         // setting user Details
@@ -45,32 +47,26 @@ const Dashboard = () => {
       }
     };
     detail();
-  }, [data]);
+  }, [uid]);
 
   // * get projects
   useEffect(() => {
     console.log("dashport project effect hook running");
     const detail = async () => {
-      const userRef = doc(db, "userProjects", data.global.uid);
-      const userSnap = await getDoc(userRef);
-      if (userSnap !== "undefined") {
-        if (userSnap) {
-          // setting user Details
-          setProjects(userSnap.data());
-          const allprojects = userSnap.data();
-          if (allprojects.projects) {
-            data.setGlobal({
-              ...data.global,
-              projects: [...allprojects.projects],
-            });
+      const userRef = doc(db, "userProjects", uid);
+      getDoc(userRef).then((res) => {
+        if (res !== "undefined") {
+          if (res) {
+            // setting user Details
+            setProjects(res.data());
+          } else {
+            console.log("unable to get data");
           }
-        } else {
-          console.log("unable to get data");
         }
-      }
+      });
     };
     detail();
-  }, [data]); // data.global.projects
+  }, [uid]);
 
   return (
     <div className="bg-gray-100 py-11">

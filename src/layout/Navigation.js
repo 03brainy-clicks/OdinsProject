@@ -39,6 +39,8 @@ const Navigation = () => {
         console.log("Logout successful  ");
         data.setGlobal({
           ...data.global,
+          projects: [],
+          uid: "",
           email: "",
         });
         navigate("/");

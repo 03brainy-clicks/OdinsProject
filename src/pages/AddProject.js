@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // ? database
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase/Firabase.config";
 
 // ? context
@@ -22,12 +22,33 @@ const AddProject = () => {
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
   const [deploy, setDeploy] = useState("");
+  const [projects, setProjects] = useState("");
 
   // *  routing;
   const navigate = useNavigate();
 
   // *  context
   const data = useContext(GlobalContext);
+
+  // * get projects
+  useEffect(() => {
+    console.log("addproject roject effect hook running");
+    const detail = async () => {
+      const userRef = doc(db, "userProjects", data.global.uid);
+      getDoc(userRef).then((res) => {
+        if (res !== "undefined") {
+          if (res) {
+            // setting user Details
+            setProjects(res.data());
+            console.log(res.data());
+          } else {
+            console.log("unable to get data");
+          }
+        }
+      });
+    };
+    detail();
+  }, [data]);
 
   //   Todo ------------------------- function --------------------
 
@@ -45,7 +66,7 @@ const AddProject = () => {
       };
 
       await setDoc(doc(db, "userProjects", data.global.uid), {
-        projects: [project, ...data.global.projects],
+        projects: [project, ...projects.projects],
       }).then((res) => {
         toast.success("Project Added");
         setCode("");
