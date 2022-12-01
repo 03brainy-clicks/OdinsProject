@@ -22,7 +22,7 @@ const AddProject = () => {
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
   const [deploy, setDeploy] = useState("");
-  const [projects, setProjects] = useState("");
+  const [projects, setProjects] = useState([]);
 
   // *  routing;
   const navigate = useNavigate();
@@ -30,25 +30,20 @@ const AddProject = () => {
   // *  context
   const data = useContext(GlobalContext);
 
-  // * get projects
+  //* get values
   useEffect(() => {
-    console.log("addproject roject effect hook running");
-    const detail = async () => {
+    const proFetch = async () => {
       const userRef = doc(db, "userProjects", data.global.uid);
-      getDoc(userRef).then((res) => {
-        if (res !== "undefined") {
-          if (res) {
-            // setting user Details
-            setProjects(res.data());
-            console.log(res.data());
-          } else {
-            console.log("unable to get data");
-          }
-        }
-      });
+      const userSnap = await getDoc(userRef);
+      if (userSnap.data() !== undefined) {
+        const proj = userSnap.data();
+        setProjects(proj.projects);
+      } else {
+        console.log("No data find");
+      }
     };
-    detail();
-  }, [data]);
+    proFetch();
+  }, [data.global.uid]);
 
   //   Todo ------------------------- function --------------------
 
@@ -66,7 +61,7 @@ const AddProject = () => {
       };
 
       await setDoc(doc(db, "userProjects", data.global.uid), {
-        projects: [project, ...projects.projects],
+        projects: [project, ...projects],
       }).then((res) => {
         toast.success("Project Added");
         setCode("");

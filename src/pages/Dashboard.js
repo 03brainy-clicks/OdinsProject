@@ -51,7 +51,6 @@ const Dashboard = () => {
 
   // * get projects
   useEffect(() => {
-    console.log("dashport project effect hook running");
     const detail = async () => {
       const userRef = doc(db, "userProjects", uid);
       getDoc(userRef).then((res) => {
