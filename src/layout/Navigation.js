@@ -72,6 +72,7 @@ const Navigation = () => {
           {data.global.email ? (
             <MenuWithAuth
               email={data.global.email}
+              uid={data.global.uid}
               handleLogout={handleLogout}
             />
           ) : (

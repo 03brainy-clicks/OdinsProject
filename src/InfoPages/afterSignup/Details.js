@@ -43,6 +43,12 @@ const Details = () => {
         email: email,
         location: location,
         about: about,
+        social: {
+          github: "",
+          linkedin: "",
+          instagram: "",
+          twitter: "",
+        },
       };
       await setDoc(doc(db, "userDetails", data.global.uid), {
         ...details,

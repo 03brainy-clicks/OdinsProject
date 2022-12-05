@@ -16,6 +16,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import PageNotFound from "./pages/PageNotFound";
 import Details from "./InfoPages/afterSignup/Details";
 import AddProject from "./pages/AddProject";
+import EditDetails from "./InfoPages/afterSignup/EditDetails";
+import EditProject from "./InfoPages/Projects/EditProject";
 
 // ? routing
 import { Route, Routes } from "react-router-dom";
@@ -40,8 +42,12 @@ function App() {
         <ToastContainer limit={3} />
         <Navigation />
         <Routes>
+          {/* profile  */}
+          <Route path="/profile/:uid/editProfile" element={<EditDetails />} />
+          <Route path="/profile/:uid" exact element={<Profile />} />
+          {/* projects  */}
+          <Route path="/project/:uid/editProject" element={<EditProject />} />
           <Route path="/project/addProject" element={<AddProject />} />
-          <Route path="/profile" exact element={<Profile />} />
           <Route path="/details" exact element={<Details />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/credit" exact element={<Credit />} />

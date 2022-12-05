@@ -24,7 +24,7 @@ const MenuWithAuth = (props) => {
       </Link>
       {/* --------- / credit ---------- */}
       {/* -------- user Profile  -------- */}
-      <Link to="/profile">
+      <Link to={`/profile/${props.uid}`}>
         <li
           className="mx-4 border-b-2 border-white hover:text-gray-700
  hover:border-gray-400 py-2

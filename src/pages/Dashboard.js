@@ -87,16 +87,57 @@ const Dashboard = () => {
             </h5>
             <p className=" text-gray-500 text-sm">{user.about}</p>
             <p className="mt-3">
-              <FontAwesomeIcon
-                icon={faLinkedinIn}
-                className="hover:text-gold"
-              />
-              &nbsp; &nbsp;
-              <FontAwesomeIcon icon={faGithub} className="hover:text-gold" />
-              &nbsp; &nbsp;
-              <FontAwesomeIcon icon={faInstagram} className="hover:text-gold" />
-              &nbsp; &nbsp;
-              <FontAwesomeIcon icon={faTwitter} className="hover:text-gold" />
+              {user.social?.linkedin ? (
+                <a
+                  href={user.social?.linkedin}
+                  className="mx-1"
+                  target="_black"
+                >
+                  <FontAwesomeIcon
+                    icon={faLinkedinIn}
+                    className="hover:text-gold"
+                  />
+                </a>
+              ) : (
+                ""
+              )}
+
+              {user.social?.github ? (
+                <a href={user.social?.github} className="mx-1" target="_black">
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className="hover:text-gold"
+                  />
+                </a>
+              ) : (
+                ""
+              )}
+
+              {user.social?.instagram ? (
+                <a
+                  href={user.social?.instagram}
+                  className="mx-1"
+                  target="_black"
+                >
+                  <FontAwesomeIcon
+                    icon={faInstagram}
+                    className="hover:text-gold"
+                  />
+                </a>
+              ) : (
+                ""
+              )}
+
+              {user.social?.twitter ? (
+                <a href={user.social?.twitter} className="mx-1" target="_black">
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    className="hover:text-gold"
+                  />
+                </a>
+              ) : (
+                ""
+              )}
             </p>
           </div>
         </div>

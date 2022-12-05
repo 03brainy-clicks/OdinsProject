@@ -43,6 +43,16 @@ body {
   background-color: var(--secondary);
 }
 
+.background-primary-outline {
+  border: solid 2px var(--primary);
+  color: var(--primary);
+}
+.background-primary-outline:hover {
+  border: solid 2px var(--primary);
+  color: var(--primary);
+  background-color: #f1f1f1;
+}
+
 a {
   text-decoration: none;
 }
