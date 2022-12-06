@@ -44,7 +44,7 @@ function App() {
         <Navigation />
         <Routes>
           {/* viewprofile  */}
-          <Route path="/viewprofile/:id" element={<ViewProfile />} />
+          <Route path="/viewprofile/:uid" element={<ViewProfile />} />
           {/* profile  */}
           <Route path="/profile/:uid/editProfile" element={<EditDetails />} />
           <Route path="/profile/:uid" exact element={<Profile />} />

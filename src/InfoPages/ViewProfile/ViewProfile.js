@@ -29,7 +29,7 @@ const ViewProfile = () => {
   const [projects, setProjects] = useState([]);
   const params = useParams();
 
-  const uid = params.id;
+  const uid = params.uid;
 
   // * get User Details
   useEffect(() => {
