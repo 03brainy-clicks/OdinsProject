@@ -50,8 +50,8 @@ const Profile = () => {
 
   return (
     <div className="bg-gray-100 py-20">
-      <div className="mx-auto w-10/12 ">
-        <div className="mx-auto md:w-6/12 w-10/12">
+      <div className="mx-auto md:w-10/12 w-11/12 ">
+        <div className="mx-auto md:w-6/12 w-11/12">
           <div className="p-7 rounded text-center bg-white text-gray-700 relative">
             <div className="">
               <img src={Avatar} alt="" width="70px" className="mx-auto" />

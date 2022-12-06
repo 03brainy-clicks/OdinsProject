@@ -115,11 +115,11 @@ const Navigation = () => {
             </Link>
             {/* -------------------------------------------- */}
             {data.global.email ? (
-              <Link to="/profile">
+              <Link to={`/profile/${data.global.uid}`}>
                 <li
                   className="mx-4 border-b-2 border-white hover:text-gray-700
- hover:border-gray-400 py-2 my-2
- "
+       hover:border-gray-400 py-2
+       "
                 >
                   {data.global.email}
                 </li>

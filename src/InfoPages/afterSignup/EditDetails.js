@@ -101,7 +101,7 @@ const EditDetails = () => {
   //   Todo ------------------------- / function --------------------
   return (
     <div className="bg-gray-100 pt-20 pb-12">
-      <h2 className="text-3xl font-bold text-center">Update your details</h2>
+      <h2 className="text-3xl font-bold text-center">Edit your details</h2>
       <div className="lg:w-2/5 w-10/12 p-7 rounded mx-auto bg-white mt-7">
         <form method="post">
           <div className="mb-5">
