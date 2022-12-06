@@ -84,12 +84,15 @@ const Dashboard = () => {
     <div className="bg-gray-100 py-11">
       <div className="mx-auto md:w-6/12 w-10/12 mb-11">
         <div className="p-7 rounded text-center bg-white text-gray-700 relative">
+          {" "}
           <span className="absolute top-3 right-3 z-10 ">
             <button
               className="rounded py-1 px-2 bg-white hover:text-gold text-gray-300"
               onClick={handleCopy}
             >
-              <FontAwesomeIcon icon={faShare} />
+              <Link to={`/viewprofile/${uid}`}>
+                <FontAwesomeIcon icon={faShare} />
+              </Link>
             </button>
           </span>
           <div className="">
