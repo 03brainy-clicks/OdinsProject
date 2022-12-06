@@ -74,7 +74,9 @@ const Dashboard = () => {
 
   const handleCopy = (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText(`https://odinsproject/viewprofile/${uid}`);
+    navigator.clipboard.writeText(
+      `https://odinsproject.netlify.app/viewprofile/${uid}`
+    );
     toast.success("Link Copied");
   };
 
