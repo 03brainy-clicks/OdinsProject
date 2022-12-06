@@ -21,7 +21,8 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 // ? image
 import Odin from "../images/odin-2.svg";
 
-// import { Toast } from "react-toastify/dist/components";
+//? toast
+import { toast } from "react-toastify";
 
 const Navigation = () => {
   // * state
@@ -36,7 +37,7 @@ const Navigation = () => {
   const handleLogout = () => {
     signOut(auth)
       .then((res) => {
-        console.log("Logout successful  ");
+        toast.success("Logout Successfully");
         data.setGlobal({
           ...data.global,
           projects: [],
@@ -96,20 +97,29 @@ const Navigation = () => {
           <ul className="flex flex-col justify-center items-center menu pb-7 md:hidden">
             {data.global.email ? (
               <Link to="/dashboard">
-                <li className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2  my-2  ">
+                <li
+                  className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2  my-2  "
+                  onClick={menuButton}
+                >
                   Dashboard
                 </li>
               </Link>
             ) : (
               <Link to="/">
-                <li className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2  my-2  ">
+                <li
+                  className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2  my-2  "
+                  onClick={menuButton}
+                >
                   Home
                 </li>
               </Link>
             )}
             {/* ------------------------------------------------ */}
             <Link to="/credit">
-              <li className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2 my-2  ">
+              <li
+                className="mx-4 border-b-2 hover:text-gray-700 hover:border-gray-400  border-white py-2 my-2  "
+                onClick={menuButton}
+              >
                 Credit
               </li>
             </Link>
@@ -120,6 +130,7 @@ const Navigation = () => {
                   className="mx-4 border-b-2 border-white hover:text-gray-700
        hover:border-gray-400 py-2
        "
+                  onClick={menuButton}
                 >
                   {data.global.email}
                 </li>
@@ -130,6 +141,7 @@ const Navigation = () => {
                   className="mx-4 border-b-2 border-white hover:text-gray-700 my-2
 hover:border-gray-400 py-2
 "
+                  onClick={menuButton}
                 >
                   Sign in
                 </li>
@@ -141,13 +153,19 @@ hover:border-gray-400 py-2
               {data.global.email ? (
                 <button
                   className="rounded background-primary text-white py-2 px-3 "
-                  onClick={handleLogout}
+                  onClick={() => {
+                    handleLogout();
+                    menuButton();
+                  }}
                 >
                   Logout
                 </button>
               ) : (
                 <Link to="/signup">
-                  <button className="rounded background-primary text-white py-2 px-3 ">
+                  <button
+                    className="rounded background-primary text-white py-2 px-3 "
+                    onClick={menuButton}
+                  >
                     Get Started
                   </button>
                 </Link>

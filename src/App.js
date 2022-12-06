@@ -27,6 +27,7 @@ import GlobalContext from "./context/GlobalContext";
 
 // ? toast
 import { ToastContainer } from "react-toastify";
+import ViewProfile from "./InfoPages/ViewProfile/ViewProfile";
 
 function App() {
   // * state
@@ -42,18 +43,24 @@ function App() {
         <ToastContainer limit={3} />
         <Navigation />
         <Routes>
+          {/* viewprofile  */}
+          <Route path="/viewprofile/:id" element={<ViewProfile />} />
           {/* profile  */}
           <Route path="/profile/:uid/editProfile" element={<EditDetails />} />
           <Route path="/profile/:uid" exact element={<Profile />} />
           {/* projects  */}
           <Route path="/project/:uid/editProject" element={<EditProject />} />
           <Route path="/project/addProject" element={<AddProject />} />
+          {/* other  */}
           <Route path="/details" exact element={<Details />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/credit" exact element={<Credit />} />
+          {/* auth  */}
           <Route path="/forgotPassword" exact element={<ForgotPassword />} />
           <Route path="/signup" exact element={<Signup />} />
           <Route path="/login" exact element={<Login />} />
+
+          {/* home  */}
           <Route path="/" exact element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
